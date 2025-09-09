@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title> VoiceGo</title>
+        <link rel="stylesheet" href="/static/style.css">
+
+    </head>
+    <body>
+        <main>
+            <h1><center>
+                Welcome to VoiceGo - Japanese Audio Analyzer
+            </center></h1>
+
+            <form id="upload-form">
+                <center>
+                    Please upload an audio file (.mp3 or .wav):
+                <input type="file" name="file" accept=".mp3, .wav" required>
+                <button type="submit"> Upload </button>
+                </center>
+            </form>
+
+            <div id="result">
+                <h2>Result</h2>
+                <p><strong>Transcription:</strong><span id="transcription"></span></p>
+                <p><strong>Translation:</strong><span id="translation"></span></p>
+                <p><strong>Vocabulary:</strong><span id="vocabulary_list"></span></p>
+            </div>
+
+            <center>
+                <button id="create-flashcards-button" disabled> Create Flashcards </button>
+            </center>
+
+            <script>
+                const form = document.getElementById("upload-form");
+                const transcriptionElement = document.getElementById("transcription");
+                const translationElement = document.getElementById("translation");
+                const vocabularyElement = document.getElementById("vocabulary_list");
+                const createFlashcardsButton = document.getElementById("create-flashcards-button");
+
+                
+                form.addEventListener("submit", async (event) => {
+                    event.preventDefault();
+                    const formData = new FormData(form);
+
+                    try {
+                        const response = await fetch("/uploads", {
+                            method: "POST",
+                            body: formData
+                        });
+
+                        const data = await response.json();
+
+                        transcriptionElement.textContent = data.transcription;
+                        translationElement.textContent = data.translation;
+
+                        let vocabDisplay = "";
+                        let hasVocab = false;
+                        for (const [level, words] of Object.entries(data.vocabulary_list)) {
+                            if (words.length > 0) {
+                                hasVocab = true;
+                                vocabDisplay += `<p><strong>${level}:</strong></p>`;
+                                words.forEach(word => {
+                                    vocabDisplay += `<li>${word.Word} (${word.Pronunciation}): ${word.Meaning}</li>`;
+                                });
+                                vocabDisplay += `</ul>`;
+                            }
+                        }
+                        vocabularyElement.innerHTML = vocabDisplay;
+
+                        if (hasVocab) {
+                            localStorage.setItem("vocabulary_list", JSON.stringify(data.vocabulary_list));
+                            createFlashcardsButton.disabled = false;
+                        }
+
+                    } catch (error) {
+                        console.error("Error:", error);
+                    }
+                });
+
+                createFlashcardsButton.addEventListener("click", () => {
+                    window.location.href = "/flashcard";
+                })
+            </script>
+        </main>
+    </body>
+</html>

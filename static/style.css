@@ -1,0 +1,250 @@
+/* Body background and page layout */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f7fa; /* soft light blue-gray */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.main-content {
+    width: 90%;
+    max-width: 1000px;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Headings */
+h1 {
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    color: #2c3e50; /* darker blue-gray */
+}
+
+/* Buttons */
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+button:hover {
+    background: linear-gradient(135deg, #45a049, #3e8e41);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+/* Flashcards container */
+#flashcard-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.flashcard {
+    width: 220px;
+    height: 140px;
+    border-radius: 12px;
+    background-color: #f0f0f0; /* light gray */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+    text-align: center;
+    padding: 15px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+/* Hover effect */
+.flashcard:hover {
+    background-color: #e0e0e0;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+/* Specific styles for the main flashcard (ID selector) */
+#flashcard {
+    width: 300px;
+    height: 150px;
+    margin: 10px auto;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    cursor: pointer;
+    background-color: #ffffff !important; /* White background */
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 1.5rem;
+    color: #2c3e50;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#flashcard:hover {
+    transform: scale(1.02);
+    background-color: #f8f9fa !important;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+/* Front/Back text */
+.flashcard .front {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.flashcard .back {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-weight: 600;
+}
+
+/* Show back on click */
+.flashcard.show-back .front {
+    display: none;
+}
+
+.flashcard.show-back .back {
+    display: flex;
+}
+
+/* Minor accent colors for headings inside the cards or sections */
+h2, h3 {
+    color: #3498db; /* soft blue accent */
+}
+
+#result {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    color: #2c3e50;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Transcription section styling */
+#transcription {
+    display: block;
+    margin-top: 10px;
+    padding: 15px;
+    background-color: #e8f4f8;
+    border: 1px solid #bee5eb;
+    border-radius: 8px;
+    max-height: 200px;
+    overflow-y: auto;
+    text-align: left;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+    word-wrap: break-word;
+    line-height: 1.5;
+    font-family: 'Courier New', monospace;
+    white-space: pre-wrap;
+}
+
+/* Translation section styling */
+#translation {
+    display: block;
+    margin-top: 10px;
+    padding: 15px;
+    background-color: #e8f4f8;
+    border: 1px solid #bee5eb;
+    border-radius: 8px;
+    max-height: 200px;
+    overflow-y: auto;
+    text-align: left;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+    word-wrap: break-word;
+    line-height: 1.5;
+    white-space: pre-wrap;
+}
+
+/* Vocabulary section styling */
+#vocabulary_list {
+    display: block;
+    margin-top: 10px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    max-height: 300px;
+    overflow-y: auto;
+    text-align: left;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+}
+
+#vocabulary_list p {
+    margin: 10px 0 5px 0;
+    font-weight: 600;
+    color: #495057;
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 5px;
+}
+
+#vocabulary_list li {
+    list-style: none;
+    padding: 8px 12px;
+    margin: 5px 0;
+    background-color: #ffffff;
+    border-radius: 5px;
+    border-left: 4px solid #4CAF50;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    transition: all 0.2s ease;
+}
+
+#vocabulary_list li:hover {
+    transform: translateX(2px);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+#vocabulary_list ul {
+    padding: 0;
+    margin: 0;
+}
+
+/* Flashcard controls styling */
+#flashcard-controls {
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+#flashcard-controls label {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+#flashcard-controls select {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    background-color: white;
+}
+
+#flashcard-controls button {
+    padding: 8px 16px;
+    font-size: 14px;
+}
